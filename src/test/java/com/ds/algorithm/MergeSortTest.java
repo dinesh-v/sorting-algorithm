@@ -28,8 +28,7 @@ public class MergeSortTest {
     public void testMergeSort() {
         long startTime = System.currentTimeMillis();
 
-        MergeSort sorter = new MergeSort();
-        sorter.sort(numbers);
+        MergeSort.sort(numbers);
 
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
@@ -52,8 +51,7 @@ public class MergeSortTest {
             for (int a = 0; a < numbers.length; a++) {
                 numbers[a] = generator.nextInt(MAX);
             }
-            MergeSort sorter = new MergeSort();
-            sorter.sort(numbers);
+            MergeSort.sort(numbers);
             for (int j = 0; j < numbers.length - 1; j++) {
                 if (numbers[j] > numbers[j + 1]) {
                     fail("Should not happen");

@@ -1,58 +1,45 @@
 package com.ds.algorithm;
 
-public class MergeSort {
-    private int[] numbers;
-    private int[] helper;
-
-    private int number;
-
-    public void sort(int[] values) {
-        this.numbers = values;
-        number = values.length;
-        this.helper = new int[number];
-        mergesort(0, number - 1);
-    }
-
-    private void mergesort(int low, int high) {
-        // check if low is smaller then high, if not then the array is sorted
-        if (low < high) {
-            // Get the index of the element which is in the middle
-            int middle = low + (high - low) / 2;
-            // Sort the left side of the array
-            mergesort(low, middle);
-            // Sort the right side of the array
-            mergesort(middle + 1, high);
-            // Combine them both
-            merge(low, middle, high);
+class MergeSort {
+    static void sort(int[] array) {
+        mergeSort(array, new int[array.length], 0, array.length - 1);
+        for (int i :
+                array) {
+            System.out.print(i + " ");
         }
+        System.out.println();
     }
 
-    private void merge(int low, int middle, int high) {
+    private static void mergeSort(int[] array, int[] temp, int leftStart, int rightEnd) {
+        if (leftStart >= rightEnd) {
+            return;
+        }
+        int middle = (leftStart + rightEnd) / 2;
+        mergeSort(array, temp, leftStart, middle);
+        mergeSort(array, temp, middle + 1, rightEnd);
+        mergeHalves(array, temp, leftStart, rightEnd);
+    }
 
-        // Copy both parts into the helper array
-        System.arraycopy(numbers, low, helper, low, high + 1 - low);
+    private static void mergeHalves(int[] array, int[] temp, int leftStart, int rightEnd) {
+        int leftEnd = (leftStart + rightEnd) / 2;
+        int rightStart = leftEnd + 1;
+        int size = rightEnd - leftStart + 1;
 
-        int i = low;
-        int j = middle + 1;
-        int k = low;
-        // Copy the smallest values from either the left or the right side back
-        // to the original array
-        while (i <= middle && j <= high) {
-            if (helper[i] <= helper[j]) {
-                numbers[k] = helper[i];
-                i++;
+        int left = leftStart;
+        int right = rightStart;
+        int index = leftStart;
+        while (left <= leftEnd && right <= rightEnd) {
+            if (array[left] <= array[right]) {
+                temp[index] = array[left];
+                left++;
             } else {
-                numbers[k] = helper[j];
-                j++;
+                temp[index] = array[right];
+                right++;
             }
-            k++;
+            index++;
         }
-        // Copy the rest of the left side of the array into the target array
-        while (i <= middle) {
-            numbers[k] = helper[i];
-            k++;
-            i++;
-        }
-
+        System.arraycopy(array, left, temp, index, leftEnd - left + 1);
+        System.arraycopy(array, right, temp, index, rightEnd - right + 1);
+        System.arraycopy(temp, leftStart, array, leftStart, size);
     }
 }
