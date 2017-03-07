@@ -1,11 +1,6 @@
 package com.ds.algorithm;
 
 class QuickSort implements Sort {
-
-    public void sort(int[] array) {
-        quickSort(array, 0, array.length - 1);
-    }
-
     private static void quickSort(int[] array, int left, int right) {
         if (left >= right) {
             return;
@@ -38,5 +33,9 @@ class QuickSort implements Sort {
         int temp = array[left];
         array[left] = array[right];
         array[right] = temp;
+    }
+
+    public void sort(int[] array) {
+        quickSort(array, 0, array.length - 1);
     }
 }

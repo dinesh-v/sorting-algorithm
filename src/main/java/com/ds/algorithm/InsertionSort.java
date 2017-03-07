@@ -1,10 +1,6 @@
 package com.ds.algorithm;
 
-/**
- * Insertion sort algorithm
- */
-public class InsertionSort implements Sort {
-
+class InsertionSort implements Sort {
     private static void insertionSort(int array[]) {
         int n = array.length;
         for (int j = 1; j < n; j++) {
@@ -21,4 +17,6 @@ public class InsertionSort implements Sort {
     public void sort(int[] array) {
         insertionSort(array);
     }
+
+
 }

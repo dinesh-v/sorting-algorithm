@@ -43,6 +43,12 @@ public class AppTest {
     }
 
     @Test
+    public void testSelectionSort() {
+        new SelectionSort().sort(numbers);
+        isSorted();
+    }
+
+    @Test
     public void testMergeSort() {
         new MergeSort().sort(numbers);
         isSorted();
