@@ -11,9 +11,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 public class AppTest {
-    private int[] numbers;
     private final static int SIZE = 7;
     private final static int MAX = 20;
+    private int[] numbers;
 
     @Before
     public void setUp() throws Exception {
@@ -28,6 +28,12 @@ public class AppTest {
     @After
     public void tearDown() throws Exception {
         /*System.out.println("After sorting : " + Arrays.toString(numbers));*/
+    }
+
+    @Test
+    public void testBubbleSort() {
+        new BubbleSort().sort(numbers);
+        isSorted();
     }
 
     @Test
