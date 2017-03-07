@@ -9,12 +9,7 @@ import java.util.Random;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest
-
-{
+public class AppTest {
     private int[] numbers;
     private final static int SIZE = 7;
     private final static int MAX = 20;
@@ -32,7 +27,7 @@ public class AppTest
     public void testMergeSort() {
         long startTime = System.currentTimeMillis();
         System.out.println("Before sorting : " + Arrays.toString(numbers));
-        MergeSort.sort(numbers);
+        new MergeSort().sort(numbers);
         System.out.println("After sorting : " + Arrays.toString(numbers));
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
@@ -44,7 +39,7 @@ public class AppTest
     public void testQuickSort() {
         long startTime = System.currentTimeMillis();
         System.out.println("Before sorting : " + Arrays.toString(numbers));
-        QuickSort.sort(numbers);
+        new QuickSort().sort(numbers);
         System.out.println("After sorting : " + Arrays.toString(numbers));
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
@@ -60,7 +55,7 @@ public class AppTest
             for (int a = 0; a < numbers.length; a++) {
                 numbers[a] = generator.nextInt(MAX);
             }
-            MergeSort.sort(numbers);
+            new MergeSort().sort(numbers);
             isSorted();
         }
     }

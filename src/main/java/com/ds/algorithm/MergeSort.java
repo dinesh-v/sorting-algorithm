@@ -1,7 +1,7 @@
 package com.ds.algorithm;
 
-class MergeSort {
-    static void sort(int[] array) {
+class MergeSort implements SortingAlgorithm {
+    public void sort(int[] array) {
         mergeSort(array, new int[array.length], 0, array.length - 1);
     }
 
