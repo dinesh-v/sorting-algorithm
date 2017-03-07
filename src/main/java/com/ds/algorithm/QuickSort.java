@@ -1,6 +1,6 @@
 package com.ds.algorithm;
 
-class QuickSort implements SortingAlgorithm {
+class QuickSort implements Sort {
 
     public void sort(int[] array) {
         quickSort(array, 0, array.length - 1);
