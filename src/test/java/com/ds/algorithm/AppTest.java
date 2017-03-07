@@ -37,6 +37,12 @@ public class AppTest {
     }
 
     @Test
+    public void testInsertionSort() {
+        new InsertionSort().sort(numbers);
+        isSorted();
+    }
+
+    @Test
     public void testMergeSort() {
         new MergeSort().sort(numbers);
         isSorted();
