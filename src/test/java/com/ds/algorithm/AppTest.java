@@ -1,5 +1,6 @@
 package com.ds.algorithm;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,14 +22,18 @@ public class AppTest {
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = generator.nextInt(MAX);
         }
+        System.out.println("Before sorting : " + Arrays.toString(numbers));
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        System.out.println("After sorting : " + Arrays.toString(numbers));
     }
 
     @Test
     public void testMergeSort() {
         long startTime = System.currentTimeMillis();
-        System.out.println("Before sorting : " + Arrays.toString(numbers));
         new MergeSort().sort(numbers);
-        System.out.println("After sorting : " + Arrays.toString(numbers));
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
         System.out.println("MergeSort time elapsed : " + elapsedTime);
@@ -38,9 +43,7 @@ public class AppTest {
     @Test
     public void testQuickSort() {
         long startTime = System.currentTimeMillis();
-        System.out.println("Before sorting : " + Arrays.toString(numbers));
         new QuickSort().sort(numbers);
-        System.out.println("After sorting : " + Arrays.toString(numbers));
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
         System.out.println("Quick sort time elapsed : " + elapsedTime);
