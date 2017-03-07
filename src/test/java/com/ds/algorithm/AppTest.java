@@ -22,31 +22,23 @@ public class AppTest {
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = generator.nextInt(MAX);
         }
-        System.out.println("Before sorting : " + Arrays.toString(numbers));
+        /*System.out.println("Before sorting : " + Arrays.toString(numbers));*/
     }
 
     @After
     public void tearDown() throws Exception {
-        System.out.println("After sorting : " + Arrays.toString(numbers));
+        /*System.out.println("After sorting : " + Arrays.toString(numbers));*/
     }
 
     @Test
     public void testMergeSort() {
-        long startTime = System.currentTimeMillis();
         new MergeSort().sort(numbers);
-        long stopTime = System.currentTimeMillis();
-        long elapsedTime = stopTime - startTime;
-        System.out.println("MergeSort time elapsed : " + elapsedTime);
         isSorted();
     }
 
     @Test
     public void testQuickSort() {
-        long startTime = System.currentTimeMillis();
         new QuickSort().sort(numbers);
-        long stopTime = System.currentTimeMillis();
-        long elapsedTime = stopTime - startTime;
-        System.out.println("Quick sort time elapsed : " + elapsedTime);
         isSorted();
     }
 
@@ -65,11 +57,7 @@ public class AppTest {
 
     @Test
     public void testStandardSort() {
-        long startTime = System.currentTimeMillis();
         Arrays.sort(numbers);
-        long stopTime = System.currentTimeMillis();
-        long elapsedTime = stopTime - startTime;
-        System.out.println("Standard Java sort " + elapsedTime);
         isSorted();
     }
 
