@@ -1,38 +1,86 @@
 package com.ds.algorithm;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.Random;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
+public class AppTest
+
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
+    private int[] numbers;
+    private final static int SIZE = 7;
+    private final static int MAX = 20;
+
+    @Before
+    public void setUp() throws Exception {
+        numbers = new int[SIZE];
+        Random generator = new Random();
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = generator.nextInt(MAX);
+        }
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+    @Test
+    public void testMergeSort() {
+        long startTime = System.currentTimeMillis();
+        System.out.println("Before sorting : " + Arrays.toString(numbers));
+        MergeSort.sort(numbers);
+        System.out.println("After sorting : " + Arrays.toString(numbers));
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println("MergeSort time elapsed : " + elapsedTime);
+        isSorted();
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    @Test
+    public void testQuickSort() {
+        long startTime = System.currentTimeMillis();
+        System.out.println("Before sorting : " + Arrays.toString(numbers));
+        QuickSort.sort(numbers);
+        System.out.println("After sorting : " + Arrays.toString(numbers));
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println("Quick sort time elapsed : " + elapsedTime);
+        isSorted();
+    }
+
+    @Test
+    public void itWorksRepeatably() {
+        for (int i = 0; i < 200; i++) {
+            numbers = new int[SIZE];
+            Random generator = new Random();
+            for (int a = 0; a < numbers.length; a++) {
+                numbers[a] = generator.nextInt(MAX);
+            }
+            MergeSort.sort(numbers);
+            isSorted();
+        }
+    }
+
+    @Test
+    public void testStandardSort() {
+        long startTime = System.currentTimeMillis();
+        Arrays.sort(numbers);
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println("Standard Java sort " + elapsedTime);
+        isSorted();
+    }
+
+    private void isSorted() {
+        for (int i = 0; i < numbers.length - 1; i++) {
+            if (numbers[i] > numbers[i + 1]) {
+                fail("Should not happen");
+            }
+        }
+        assertTrue(true);
     }
 }
